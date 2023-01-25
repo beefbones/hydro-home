@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS hydro_db;
+CREATE DATABASE hydro_db;
