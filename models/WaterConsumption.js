@@ -19,6 +19,10 @@ WaterConsumption.init(
                 key: "id",
             },
         },
+        target_daily_consumption: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         amount_consumed: {
             type: DataTypes.INTEGER,
             allowNull: false,
