@@ -27,10 +27,6 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    target_daily_consumption: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
   },
   {
     sequelize,
