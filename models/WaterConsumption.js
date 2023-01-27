@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
 class WaterConsumption extends Model {}
 
@@ -13,7 +13,6 @@ WaterConsumption.init(
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            autoIncrement: true,
             references: {
                 model: "user",
                 key: "id",
@@ -28,7 +27,7 @@ WaterConsumption.init(
             allowNull: false,
         },
     },
-        {
+    {
         sequelize,
         updatedAt: false,
         createdAt: "timestamp",
@@ -36,7 +35,7 @@ WaterConsumption.init(
         freezeTableName: true,
         underscored: true,
         modelName: "water_consumption",
-        }
-    );
-    
+    }
+);
+
 module.exports = WaterConsumption;
