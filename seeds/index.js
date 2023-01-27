@@ -1,5 +1,6 @@
+const sequelize = require("../config/connection");
 const seedUsers = require("./SeedUsers");
-const seedWaterConsumption = require("./SeedWaterConsumption");
+//const seedWaterConsumption = require("./SeedWaterConsumption");
 const seedForumPosts = require("./SeedForumPosts");
 const seedComments = require("./SeedComments");
 
@@ -16,8 +17,8 @@ const seedData = async () => {
     console.log("\n----Seeding Forum Comments!----\n");
     await seedComments();
 
-    console.log("\n----Seeding Water Consumption!----\n");
-    await seedWaterConsumption();
+    //console.log("\n----Seeding Water Consumption!----\n");
+    //await seedWaterConsumption();
 
     process.kill(0);
 };

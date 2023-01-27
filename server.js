@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 
 const hbs = exphbs.create({ helpers });
 
-const sess = {
+/* const sess = {
     secret: "Super secret secret",
     cookie: {},
     resave: false,
@@ -20,7 +20,7 @@ const sess = {
     }),
 };
 
-app.use(session(sess));
+app.use(session(sess)); */
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
