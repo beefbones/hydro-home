@@ -13,6 +13,20 @@
     <header>
         <h1>Welcome, hydro homie!</h1>
     </header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/forum">Forum</a>
+    </nav>
+
+        {{#if logged_in}}
+        <a href="/"></a> |
+        {{else}}
+        <a href="/login"></a>
+        {{/if}}
+
+    <div>
+        {{body}}
+    </div>
 </body>
 
 </html>
