@@ -1,20 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydro Home</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/jass.css">
+</head>
+
+<body>
+    <header>
+        <h1>Welcome, hydro homie!</h1>
+    </header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/forum">Forum</a>
+    </nav>
+
+        {{#if logged_in}}
+        <a href="/"></a> |
+        {{else}}
+        <a href="/login"></a>
+        {{/if}}
+
+    <div>
+        {{{body}}}
+    </div>
+</body>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-    <link href="public\css\style.css" rel="stylesheet">
-</head>
-<h2 class="bg-black">"Hello World"</h2>
 
-<script id="barChart" type="text/x-handlebars-template">
-
-<div class="row">
-  <div class="col-sm-12 col-md-2"> </div>
-    <div class="col-sm-12 col-md-8"> 
-      <canvas id="myChart" width="400" height="400"></canvas>
-    </div>
-  </div>
-</div>
-
-</script>
+</html>

@@ -1,0 +1,12 @@
+<section class="card">
+    <a href="/forum/{{id}}"></a>
+    <div class="post-title">{{post_title}}</div>
+    <div class="card-body">
+        <div class="post-content">{{content}}</div>>
+        <div class="user-data">Posted by: {{user_id}} at {{timestamp}}</div>
+    {{#each ForumPost.comment as |comment|}}
+        <div>{{content}}</div>
+        </div>{{user_id}}</div>
+        <div>{{vote_total}}</div>
+    {{/each}}
+</section>
