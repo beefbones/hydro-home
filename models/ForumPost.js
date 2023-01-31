@@ -1,5 +1,5 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
 class ForumPost extends Model {}
 
@@ -13,7 +13,6 @@ ForumPost.init(
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            autoIncrement: true,
             references: {
                 model: "user",
                 key: "id",
@@ -33,7 +32,7 @@ ForumPost.init(
             defaultValue: 0,
         },
     },
-        {
+    {
         sequelize,
         updatedAt: false,
         createdAt: "timestamp",
@@ -41,7 +40,7 @@ ForumPost.init(
         freezeTableName: true,
         underscored: true,
         modelName: "forum_post",
-        }
-    );
-    
+    }
+);
+
 module.exports = ForumPost;
