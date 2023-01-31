@@ -1,20 +1,18 @@
-const today = new Date("timestamp");
-const weekday = today.getDay();
+// const today = new Date("timestamp");
+// const weekday = today.getDay();
 
-
-
-const ctx = document.getElementById('myChart');
+const dailyChart = document.getElementById('dailyChart');
 
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-const yValues = [55, 49, 44, 24, 15, 22, 40];
+const yValues = [64];
 const barColor = "blue";
 
-new Chart(ctx, {
+new Chart(dailyChart, {
     type: "bar",
     data: {
-        labels: days,
+        labels: "Today's Intake",
         datasets: [{
-            backgroundColor: barColors,
+            backgroundColor: barColor,
             data: yValues
         }]
     },
@@ -23,6 +21,21 @@ new Chart(ctx, {
         title: {
             display: true,
             text: "Daily Water Intake"
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
         }
     }
 });
+
+const addData = (chart) => {
+  console.log("beepboop")
+  chart.data.datasets.data.forEach((dataset) => {
+    dataset.data.push(document.getElementById("waterIntake"));
+  });
+  chart.update();
+}
