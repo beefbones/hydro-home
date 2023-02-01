@@ -43,7 +43,7 @@ router.post("/login", async (req, res) => {
             req.session.user_id = userData.id;
             req.session.logged_in = true;
             console.log(req.session.user_id);
-            res.redirect("/");
+            res.status(200).send("signed in successfully!");
         } else {
             res.status(400).json({ message: "Incorrect email, username, or password, please try again" });
         }
