@@ -4,16 +4,20 @@
 const dailyChart = document.getElementById('dailyChart');
 
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-const yValues = [64];
+let yValues = [64]
 const barColor = "blue";
 
 new Chart(dailyChart, {
     type: "bar",
     data: {
-        labels: "Today's Intake",
         datasets: [{
-            backgroundColor: barColor,
-            data: yValues
+          backgroundColor: "#9BD0F5",
+          barThickness: 50,
+          borderColor: "#36A2EB",
+          borderRadius: 100,
+          borderWidth: 3,
+          borderSkipped: false,
+          data: yValues
         }]
     },
     options: {
@@ -23,6 +27,11 @@ new Chart(dailyChart, {
             text: "Daily Water Intake"
         },
         scales: {
+          xAxes: [{
+            gridLines: {
+              display: false
+            }
+          }],
           yAxes: [{
             ticks: {
               beginAtZero: true
@@ -32,9 +41,9 @@ new Chart(dailyChart, {
     }
 });
 
-const addData = (chart) => {
+function updateValue() {
   console.log("beepboop")
-  chart.data.datasets.data.forEach((dataset) => {
+  chart.dataset.data.forEach((dataset) => {
     dataset.data.push(document.getElementById("waterIntake"));
   });
   chart.update();

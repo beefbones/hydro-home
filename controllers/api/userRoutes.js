@@ -5,6 +5,14 @@ const bcrypt = require("bcrypt");
 router.post("/signup", async (req, res) => {
     bcrypt.hash(req.body.password, 10, async (err, hashed_password) => {
         try {
+            /* 
+        req body should look like:
+        {
+            username: (STRING),
+            email: (STRING),
+            password: (STRING)
+        }
+        */
             await User.create({
                 username: req.body.username,
                 email: req.body.email,
@@ -25,6 +33,15 @@ router.post("/signup", async (req, res) => {
 
 router.post("/login", async (req, res) => {
     try {
+        /* 
+        req body should look like:
+        {
+            username: (STRING),
+            email: (STRING),
+            password: (STRING)
+        }
+        */
+
         let userData;
 
         if (req.body.username) {
@@ -42,8 +59,7 @@ router.post("/login", async (req, res) => {
         if (validPass) {
             req.session.user_id = userData.id;
             req.session.logged_in = true;
-            console.log(req.session.user_id);
-            res.redirect("/");
+            res.status(200).send("signed in successfully!");
         } else {
             res.status(400).json({ message: "Incorrect email, username, or password, please try again" });
         }
@@ -53,7 +69,6 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/logout", (req, res) => {
-    console.log(req.session.user_id);
     if (req.session.logged_in) {
         req.session.destroy(() => {
             res.status(200).redirect("/");
