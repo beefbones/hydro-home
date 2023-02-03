@@ -5,18 +5,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hydro Home</title>
+
     <link rel="stylesheet" type="text/css" href="/public/css/style.css">
     <link rel="stylesheet" type="text/css" href="/public/css/jass.css"
+
+     <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+     <script src="https://cdn.tailwindcss.com"></script>
+   
+
 </head>
 
 <body>
     <header>
-        <h1>Welcome, hydro homie!</h1>
+        <h1 class="pt-4 bg-gradient-to-r from-sky-800 via-cyan-500 to-sky-800  text-slate-200 text-center text-2xl font-satisfy">Welcome, Hydro Homie!</h1>
     </header>
-    <nav>
-        <a href="/">Home</a>
+    <nav class="pb-1 pr-4 bg-gradient-to-r from-sky-800 via-cyan-500 to-sky-800 text-slate-200 text-right text-base">
+        <a class="px-4" href="/">Home</a>
         <a href="/forum">Forum</a>
     </nav>
+    
 
         {{#if logged_in}}
         <a href="/"></a> |

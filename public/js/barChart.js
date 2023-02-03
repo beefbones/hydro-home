@@ -172,4 +172,6 @@ const addWater = parseInt(document.getElementById("waterIntake").value)
   myChart.update();
 };
 
+
 dataFormatter();
+

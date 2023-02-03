@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./views/**/*.{html,js,handlebars}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'satisfy': ['satisfy', 'mono']
+      }
+    },
   },
   plugins: [],
 }
