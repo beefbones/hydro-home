@@ -3,7 +3,7 @@ const { ForumPost, User, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 
-router.get("/", async (req, res) => {
+router.get("/forum", async (req, res) => {
     try {
       const postData = await ForumPost.findAll({
         attributes: ["id", "post_title", "content", "vote_total"],
@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
     }
   });
 
-  router.post("/", withAuth, async (req, res) => {
+  router.post("/forum", withAuth, async (req, res) => {
     try {
       const newPost = await ForumPost.create({
         ...req.body,
@@ -44,7 +44,7 @@ router.get("/", async (req, res) => {
     }
   });
   
-  router.get("/:id", async (req, res) => {
+  router.get("/forum/:id", async (req, res) => {
     try {
       const postData = await ForumPost.findOne({
         where: { id: req.params.id },
@@ -75,7 +75,7 @@ router.get("/", async (req, res) => {
     }
   });
   
-  router.put("/:id", withAuth, async (req, res) => {
+  router.put("/forum/:id", withAuth, async (req, res) => {
     try {
       const updatePost = await ForumPost.update(
         {
@@ -99,7 +99,7 @@ router.get("/", async (req, res) => {
     }
   });
   
-  router.delete("/:id", withAuth, async (req, res) => {
+  router.delete("/forum/:id", withAuth, async (req, res) => {
     try {
       const postData = await Post.destroy({
         where: {
