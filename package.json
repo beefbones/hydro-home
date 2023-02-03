@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "npx tailwindcss -i ./src/style.css -o ./css/style.css --watch"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/beefbones/hydro-home#readme",
   "dependencies": {
+    "autoprefixer": "^10.4.13",
     "bcrypt": "^5.1.0",
     "chart.js": "^4.2.0",
     "connect-session-sequelize": "^7.1.5",
@@ -27,6 +29,7 @@
     "express-handlebars": "^6.0.6",
     "express-session": "^1.17.3",
     "mysql2": "^3.0.1",
-    "sequelize": "^6.28.0"
+    "sequelize": "^6.28.0",
+    "tailwindcss": "^3.2.4"
   }
 }
