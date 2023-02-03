@@ -26,7 +26,7 @@ router.get('/login', (req, res) => {
     return;
   }
 
-  res.render('signup');
+  res.render('forum');
 });
 
 module.exports = router;
