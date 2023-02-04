@@ -80,6 +80,45 @@ let newDailyChart = new Chart(dailyChart, {
         }
     }
 });
+//}
+
+//const weeklyChartFormatter = async (event) => {
+let myWeeklyChart = new Chart(weeklyChart, {
+  type: "bar",
+  data: {
+  labels: dayLabels,
+      datasets: [{
+        backgroundColor: "#9BD0F5",
+        barThickness: 50,
+        borderColor: "#36A2EB",
+        borderRadius: 100,
+        borderWidth: 3,
+        borderSkipped: false,
+        data: weeklyIntake
+      }]
+  },
+  options: {
+      legend: { display: false },
+      title: {
+          display: true,
+          text: "This Week's Water Intake"
+      },
+      scales: {
+        xAxes: {
+          grid: {
+            display: false
+          }
+        },
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+  }
+});
+}
+//}
 
 if (newDailyChart){
   const response = await fetch('/api/waterConsumption', {
@@ -114,6 +153,7 @@ let newWeeklyChart = new Chart(weeklyChart, {
         borderWidth: 3,
         borderSkipped: false,
         data: weeklyIntake
+
       }]
   },
   options: {
@@ -213,12 +253,6 @@ const updateValue = async (event) => {
   }
 };
 
-<<<<<<< HEAD
 }
 
 dataFormatter();
-=======
-
-dataFormatter();
-
->>>>>>> 33199066dc57be3a56077daa6875fca07363789d
