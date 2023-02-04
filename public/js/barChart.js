@@ -158,18 +158,21 @@ let myChart = new Chart(dailyChart, {
 };
 
 const updateValue = async (event) => {
+  event.preventDefault();
 
+  const addWater = parseInt(document.getElementById("waterIntake").value;
 //call api POST /api/waterConsumption
-const response = await fetch('/api/users/login', {
-  method: 'POST',
-  body: JSON.stringify({ email, password }),
-  headers: { 'Content-Type': 'application/json' },
+  if (addWater){
+    const response = await fetch('/api/waterConsumption', {
+      method: 'POST',
+      body: JSON.stringify({ }),
+      headers: { 'Content-Type': 'application/json' },
 });
 
 
-const addWater = parseInt(document.getElementById("waterIntake").value)
   todaysIntake[0]=todaysIntake[0]+addWater;
   myChart.update();
+  }
 };
 
 dataFormatter();
