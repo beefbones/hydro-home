@@ -1,4 +1,5 @@
 const dataFormatter = async (event) => {
+  event.preventDefault();
 
 const midnightThisMorning = new Date();
 midnightThisMorning.setHours(0, 0, 0); //To find previous day, subtract 1000*60*60*24*2 from date
@@ -43,8 +44,10 @@ intakeData.forEach(entry => {
 })
 
 
-//const dailyChartFormatter = async (event) => {
-let myChart = new Chart(dailyChart, {
+const dailyChartFormatter = async (event) => {
+  event.preventDefault();
+  
+let newDailyChart = new Chart(dailyChart, {
     type: "bar",
     data: {
         datasets: [{
@@ -117,12 +120,31 @@ let myWeeklyChart = new Chart(weeklyChart, {
 }
 //}
 
-function updateGoal() {
+if (newDailyChart){
+  const response = await fetch('/api/waterConsumption', {
+    method: 'POST',
+    body: JSON.stringify({addWater, setGoal}),
+    headers: { 'Content-Type': 'application/json' },
+});
+if (response.ok) {
+  document.location.replace('/');
+} else {
+  alert('Failed to load graph.');
+}
 
-const setGoal = parseInt(document.getElementById("waterGoal").value)
-let myChart = new Chart(dailyChart, {
+}
+
+}
+
+dailyChartFormatter();
+
+const weeklyChartFormatter = async (event) => {
+  event.preventDefault();
+
+let newWeeklyChart = new Chart(weeklyChart, {
   type: "bar",
   data: {
+  labels: dayLabels,
       datasets: [{
         backgroundColor: "#9BD0F5",
         barThickness: 50,
@@ -130,14 +152,15 @@ let myChart = new Chart(dailyChart, {
         borderRadius: 100,
         borderWidth: 3,
         borderSkipped: false,
-        data: todaysIntake
+        data: weeklyIntake
+
       }]
   },
   options: {
       legend: { display: false },
       title: {
           display: true,
-          text: "Daily Water Intake"
+          text: "This Week's Water Intake"
       },
       scales: {
         xAxes: {
@@ -147,31 +170,89 @@ let myChart = new Chart(dailyChart, {
         },
         yAxes: [{
           ticks: {
-            beginAtZero: true,
-            max: setGoal
+            beginAtZero: true
           }
         }]
       }
   }
 });
-  myChart.update();
-};
+
+  if (newWeeklyChart){
+    const response = await fetch('/api/waterConsumption', {
+      method: 'POST',
+      body: JSON.stringify({addWater, setGoal}),
+      headers: { 'Content-Type': 'application/json' },
+});
+  if (response.ok) {
+    document.location.replace('/');
+  } else {
+    alert('Failed to load graph.');
+  }
+
+  }
+}
+
+weeklyChartFormatter();
 
 const updateValue = async (event) => {
+  event.preventDefault();
 
+  const addWater = parseInt(document.getElementById("waterIntake").value);
+  const setGoal = parseInt(document.getElementById("waterGoal").value)
 //call api POST /api/waterConsumption
-const response = await fetch('/api/users/login', {
-  method: 'POST',
-  body: JSON.stringify({ email, password }),
-  headers: { 'Content-Type': 'application/json' },
+  if (addWater || setGoal){
+    const response = await fetch('/api/waterConsumption', {
+      method: 'POST',
+      body: JSON.stringify({addWater, setGoal}),
+      headers: { 'Content-Type': 'application/json' },
 });
+  if (response.ok) {
+    document.location.replace('/');
+  } else {
+    alert('Failed to add data entry.');
+  }
 
-
-const addWater = parseInt(document.getElementById("waterIntake").value)
   todaysIntake[0]=todaysIntake[0]+addWater;
-  myChart.update();
+
+  let myDailyChart = new Chart(dailyChart, {
+    type: "bar",
+    data: {
+        datasets: [{
+          backgroundColor: "#9BD0F5",
+          barThickness: 50,
+          borderColor: "#36A2EB",
+          borderRadius: 100,
+          borderWidth: 3,
+          borderSkipped: false,
+          data: todaysIntake
+        }]
+    },
+    options: {
+        legend: { display: false },
+        title: {
+            display: true,
+            text: "Daily Water Intake"
+        },
+        scales: {
+          xAxes: {
+            grid: {
+              display: false
+            }
+          },
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              max: setGoal
+            }
+          }]
+        }
+    }
+  });
+
+  myDailyChart.update();
+  }
 };
 
+}
 
 dataFormatter();
-
