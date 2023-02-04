@@ -213,6 +213,12 @@ const updateValue = async (event) => {
   }
 };
 
+<<<<<<< HEAD
 }
 
 dataFormatter();
+=======
+
+dataFormatter();
+
+>>>>>>> 33199066dc57be3a56077daa6875fca07363789d
