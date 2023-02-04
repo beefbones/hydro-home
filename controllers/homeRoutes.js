@@ -41,7 +41,7 @@ router.get('/login', (req, res) => {
     return;
   }
 
-  res.render('forum');
+  res.render('login');
 });
 
 module.exports = router;
