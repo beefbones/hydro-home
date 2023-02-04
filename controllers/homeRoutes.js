@@ -34,6 +34,18 @@ router.get('/forum', withAuth, async (req, res) => {
   }
 });
 
+router.get('/signup', withAuth, async (req, res) => {
+  try {
+    
+    const users = userData.map((project) => project.get({ plain: true }));
+
+    res.render('signup', {
+      users,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
