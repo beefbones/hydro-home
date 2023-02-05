@@ -25,12 +25,6 @@
 </div>
 
 
-
-
-
-<section class="card">
-        {{#each ForumPost as |post|}}
-            {{> post-details}}
-        {{/each}}
-</section>
-
+{{#each forumPosts as |posts|}}
+{{> post-details}}
+{{/each}}
