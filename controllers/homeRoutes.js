@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, ForumPost } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
@@ -23,13 +23,22 @@ router.get('/', withAuth, async (req, res) => {
 router.get('/forum', withAuth, async (req, res) => {
   try {
     
-    const users = userData.map((project) => project.get({ plain: true }));
-
-    res.render('forum', {
-      users,
-      logged_in: req.session.logged_in,
+    const postData = await ForumPost.findAll({
+      include: [
+        {
+        attributes: ['id', 'user_id', 'post_title', 'content', 'vote_total']
+        }
+      ]
     });
+    
+    const forumPosts = postData.map((posts) =>
+    posts.get({plain: true})
+    );
+
+    res.render('forum', {forumPosts});
+
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
   }
 });
