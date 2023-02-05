@@ -17,18 +17,17 @@
 
 </head>
 
-<body>
-    <header>
-        <h1 class="pt-4 bg-gradient-to-r from-sky-800 via-cyan-500 to-sky-800  text-slate-200 text-center text-2xl font-satisfy">Welcome, Hydro Homie!</h1>
+<body >
+    <header class="bg-gradient-to-r from-cyan-500 via-sky-800 to-cyan-500 flex justify-center">
+        <img class="object-contain h-40 flex justify-center" src="/images/hydro-home-logo.png" alt="Hydro Home logo">
     </header>
-    <nav class="pb-1 pr-4 bg-gradient-to-r from-sky-800 via-cyan-500 to-sky-800 text-slate-200 text-right text-base">
+    <nav class="pb-1 pr-4 bg-gradient-to-r from-cyan-500 via-sky-800 to-cyan-500 text-slate-200 text-right text-base">
         {{#if logged_in}}
         <a class="px-4" href="/">Home</a>
-        <a href="/forum">Forum</a>
+        <a class="px-4" href="/forum">Forum</a>
         <button id="logout-button">Logout</button>
         {{else}}
-        <a class="px-4" href="/">Home</a>
-        <a href="/forum">Forum</a>
+        <a href="/login"></a>
         {{/if}}
 
     </nav>
