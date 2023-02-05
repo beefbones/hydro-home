@@ -4,6 +4,8 @@ const consumptionResponse = await fetch(`/api/waterConsumption/weekly/${new Date
 });
 const weeklyConsumptionData = await consumptionResponse.json();
 
+const weeklyChart = document.getElementById('weeklyChart');
+
 const midnightThisMorning = new Date();
 midnightThisMorning.setHours(0, 0, 0); //To find previous day, subtract 1000*60*60*24*2 from date
   
