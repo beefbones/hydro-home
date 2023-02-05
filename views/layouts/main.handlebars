@@ -22,8 +22,15 @@
         <h1 class="pt-4 bg-gradient-to-r from-sky-800 via-cyan-500 to-sky-800  text-slate-200 text-center text-2xl font-satisfy">Welcome, Hydro Homie!</h1>
     </header>
     <nav class="pb-1 pr-4 bg-gradient-to-r from-sky-800 via-cyan-500 to-sky-800 text-slate-200 text-right text-base">
+        {{#if logged_in}}
         <a class="px-4" href="/">Home</a>
         <a href="/forum">Forum</a>
+        <a href="/logout">Logout</a>
+        {{else}}
+        <a class="px-4" href="/">Home</a>
+        <a href="/forum">Forum</a>
+        {{/if}}
+
     </nav>
     
 
