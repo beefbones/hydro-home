@@ -12,7 +12,7 @@ const updateConsumption = async (event) => {
     if (newGoalVal) {
         newWaterData.target_daily_consumption = newGoalVal;
     }
-    console.log(newWaterData);
+
     await fetch("/api/waterConsumption", {
         method: "POST",
         body: JSON.stringify(newWaterData),
@@ -21,6 +21,7 @@ const updateConsumption = async (event) => {
 
     document.querySelector("#water-consumption-form").reset();
     document.querySelector("#water-goal-form").reset();
+    document.location.replace("/");
 };
 
 document.querySelector("#water-consumption-form").addEventListener("submit", updateConsumption);
