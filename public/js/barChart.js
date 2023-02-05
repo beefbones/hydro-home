@@ -253,6 +253,4 @@ const updateValue = async (event) => {
   }
 };
 
-}
-
 dataFormatter();
