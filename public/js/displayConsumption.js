@@ -27,5 +27,43 @@ const updateDisplay = async () => {
     }
 
     goalDisplay.innerHTML = `${currentGoal} ounces`;
+
 };
+
+const dailyChart = document.getElementById('dailyChart');
+
+let newDailyChart = new Chart(dailyChart, {
+    type: "bar",
+    data: {
+        datasets: [{
+          backgroundColor: "#9BD0F5",
+          barThickness: 50,
+          borderColor: "#36A2EB",
+          borderRadius: 100,
+          borderWidth: 3,
+          borderSkipped: false,
+          data: todaysConsumption
+        }]
+    },
+    options: {
+        legend: { display: false },
+        title: {
+            display: true,
+            text: "Daily Water Intake"
+        },
+        scales: {
+          xAxes: {
+            grid: {
+              display: false
+            }
+          },
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+    }
+});
+
 updateDisplay();
