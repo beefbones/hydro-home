@@ -1,29 +1,27 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 
-<div class="dailyChartBox">
-  <canvas id="dailyChart"></canvas>
+<div>
+    <h2 class="inline">Today's Water Intake: </h2>
+    <p id="consumption-today"></p>
 </div>
+
+<form id="water-consumption-form">
+    <label for="water-input"><h2 class="inline">Add Water Intake (ounces):</h2></label>
+    <input class="bg-slate-500 text-white" type="number" id="water-input" placeholder="8" />
+</form>
 
 <div>
-    <label for="waterIntake">Today's Intake</label>
-    <input name="waterIntake" id="waterIntake" type="number">
+    <h2 class="inline">Today's Water Goal: </h2>
+    <p id="todays-goal"></p>
 </div>
 
-<button onclick="updateValue()">Add Water</button>
-
-<div>
-    <label for="Today's Goal">Today's Goal (in ounces)</label>
-    <input name="waterGoal" id="waterGoal" type="number">
-</div>
-
-<button onclick="updateValue()">Set Goal</button>
+<form id="water-goal-form">
+    <label for="new-goal"><h2 class="inline">Add Water Intake (ounces):</h2></label>
+    <input class="bg-slate-500 text-white" type="number" id="new-goal" placeholder="64" />
+</form>
 
 <div class="weeklyChartBox">
-  <canvas id="weeklyChart"></canvas>
-</div>
-
-<div class="weeklyChartBox">
-  <canvas id="weeklyChart"></canvas>
+    <canvas id="weeklyChart"></canvas>
 </div>
 
 <script src="./js/barChart.js"></script>
