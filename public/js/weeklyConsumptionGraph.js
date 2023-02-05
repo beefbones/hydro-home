@@ -44,6 +44,8 @@ console.log(now);
       weeklyIntake[0] += entry.amount_water_consumed
     } 
   })
+  
+  console.log(dayLabels);
 
   let myWeeklyChart = new Chart(weeklyChart, {
     type: "bar",
@@ -73,9 +75,10 @@ console.log(now);
           },
           yAxes: [{
             ticks: {
-              beginAtZero: true
+              beginAtZero: true,
             }
           }]
         }
     }
   });
+

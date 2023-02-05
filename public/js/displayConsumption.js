@@ -8,10 +8,11 @@ const updateDisplay = async () => {
     });
     const todaysConsumptionData = await consumptionResponse.json();
 
-    let todaysConsumption = 0;
+    let todaysConsumption = [0];
     todaysConsumptionData.forEach((entry) => {
-        todaysConsumption += entry.amount_consumed;
+        todaysConsumption[0] = todaysConsumption[0] + entry.amount_consumed;
     });
+
     consumptionDisplay.innerHTML = `${todaysConsumption} ounces`;
 
     const allResponse = await fetch(`/api/waterConsumption`, {
@@ -28,9 +29,7 @@ const updateDisplay = async () => {
 
     goalDisplay.innerHTML = `${currentGoal} ounces`;
 
-};
-
-const dailyChart = document.getElementById('dailyChart');
+    const dailyChart = document.getElementById('dailyChart');
 
 let newDailyChart = new Chart(dailyChart, {
     type: "bar",
@@ -39,7 +38,6 @@ let newDailyChart = new Chart(dailyChart, {
           backgroundColor: "#9BD0F5",
           barThickness: 50,
           borderColor: "#36A2EB",
-          borderRadius: 100,
           borderWidth: 3,
           borderSkipped: false,
           data: todaysConsumption
@@ -59,11 +57,16 @@ let newDailyChart = new Chart(dailyChart, {
           },
           yAxes: [{
             ticks: {
-              beginAtZero: true
+              beginAtZero: true,
+              max: currentGoal
             }
           }]
         }
     }
 });
 
+newDailyChart.update();
+};
+
 updateDisplay();
+
