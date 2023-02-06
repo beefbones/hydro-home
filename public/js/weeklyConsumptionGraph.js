@@ -1,19 +1,22 @@
+const updateWeeklyChart = async () => {
 const consumptionResponse = await fetch(`/api/waterConsumption/weekly/${new Date().setHours(0, 0, 0, 0)}`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
 });
-const weeklyConsumptionData = await consumptionResponse.json();
+    const weeklyConsumptionData = await consumptionResponse.json();
 
-const weeklyChart = document.getElementById('weeklyChart');
+    console.log({weeklyConsumptionData});
 
-const midnightThisMorning = new Date();
-midnightThisMorning.setHours(0, 0, 0); //To find previous day, subtract 1000*60*60*24*2 from date
+    const weeklyChart = document.getElementById('weeklyChart');
+
+    const midnightThisMorning = new Date();
+    midnightThisMorning.setHours(0, 0, 0); //To find previous day, subtract 1000*60*60*24*2 from date
+    console.log(midnightThisMorning)
   
-const now = new Date();
-console.log(now);
+    const now = new Date();
   
   const day = now.getDay();
-  console.log(day);
+
   
   let dayLabels;
   
@@ -27,27 +30,30 @@ console.log(now);
   
   let weeklyIntake = [0, 0, 0, 0, 0, 0, 0];
   
+  console.log("beep boop", new Date(midnightThisMorning - (1000*60*60*24)).toISOString())
+
   weeklyConsumptionData.forEach(entry => {
-    if (entry.timeStamp >= midnightThisMorning){
-      weeklyIntake[6] += entry.amount_water_consumed
-    } else if (entry.timeStamp >= midnightThisMorning - (1000*60*60*24)){
-      weeklyIntake[5] += entry.amount_water_consumed
-    } else if (entry.timeStamp >= midnightThisMorning - (1000*60*60*24*2)){
-      weeklyIntake[4] += entry.amount_water_consumed
-    } else if (entry.timeStamp >= midnightThisMorning - (1000*60*60*24*3)){
-      weeklyIntake[3] += entry.amount_water_consumed
-    } else if (entry.timeStamp >= midnightThisMorning - (1000*60*60*24*4)){
-      weeklyIntake[2] += entry.amount_water_consumed
-    } else if (entry.timeStamp >= midnightThisMorning - (1000*60*60*24*5)){
-      weeklyIntake[1] += entry.amount_water_consumed
-    } else if (entry.timeStamp >= midnightThisMorning - (1000*60*60*24*6)){
-      weeklyIntake[0] += entry.amount_water_consumed
+    console.log(entry.timestamp);
+    if (entry.timestamp >= midnightThisMorning.toISOString()){
+      weeklyIntake[6] += entry.amount_consumed
+    } else if (entry.timestamp >= new Date(midnightThisMorning - (1000*60*60*24)).toISOString()){
+      weeklyIntake[5] += entry.amount_consumed
+    } else if (entry.timestamp >= new Date(midnightThisMorning - (1000*60*60*24*2)).toISOString()){
+      weeklyIntake[4] += entry.amount_consumed
+    } else if (entry.timestamp >= new Date(midnightThisMorning - (1000*60*60*24*3)).toISOString()){
+      weeklyIntake[3] += entry.amount_consumed
+    } else if (entry.timestamp >= new Date(midnightThisMorning - (1000*60*60*24*4)).toISOString()){
+      weeklyIntake[2] += entry.amount_consumed
+    } else if (entry.timestamp >= new Date(midnightThisMorning - (1000*60*60*24*5)).toISOString()){
+      weeklyIntake[1] += entry.amount_consumed
+    } else if (entry.timestamp >= new Date(midnightThisMorning - (1000*60*60*24*6)).toISOString()){
+      weeklyIntake[0] += entry.amount_consumed
     } 
   })
   
   console.log(dayLabels);
 
-  let myWeeklyChart = new Chart(weeklyChart, {
+  let newWeeklyChart = new Chart(weeklyChart, {
     type: "bar",
     data: {
     labels: dayLabels,
@@ -82,3 +88,7 @@ console.log(now);
     }
   });
 
+  newWeeklyChart.update();
+};
+
+updateWeeklyChart();
