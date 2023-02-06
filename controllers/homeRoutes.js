@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, ForumPost } = require('../models');
+const { User, ForumPost, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
@@ -22,19 +22,39 @@ router.get('/', withAuth, async (req, res) => {
 
 router.get('/forum', withAuth, async (req, res) => {
   try {
-    
+    console.log("Serve forum template")
     const postData = await ForumPost.findAll({
+      attributes: [
+        "id",
+        "user_id",
+        "post_title",
+        "content",
+        "vote_total",
+      ],
+      include: {
+        model: User,
+        attributes: ["username"]
+      },
       include: [
         {
-        attributes: ['id', 'user_id', 'post_title', 'content', 'vote_total']
+          model: Comment,
+          attributes: [
+            "id",
+            "user_id",
+            "post_id",
+            "content",
+            "vote_total",
+          ],
+          include: { model: User, attributes: ["username"] },
         }
       ]
     });
     
+
     const forumPosts = postData.map((posts) =>
     posts.get({plain: true})
     );
-
+    console.log(forumPosts)
     res.render('forum', {forumPosts});
 
   } catch (err) {
