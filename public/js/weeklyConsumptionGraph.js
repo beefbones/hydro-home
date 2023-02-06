@@ -90,7 +90,7 @@ const updateWeeklyChart = async () => {
                 },
                 {
                     borderColor: "#84FCEF",
-                    fill: false,
+                    backgroundColor: 'rgba(177, 255, 247, 0.3)',
                     data: goalArray,
                     type: 'line',
                     order: 1
@@ -101,22 +101,20 @@ const updateWeeklyChart = async () => {
             legend: { display: false },
             title: {
                 display: true,
-                text: "This Week's Water Intake",
+                text: "This Week's Water Intake (ounces)",
             },
             scales: {
-                xAxes: {
-                    grid: {
+                xAxes: [{
+                    gridLines: {
                         display: false,
                     },
-                },
-                yAxes: [
-                    {
+             }],
+                yAxes: [{
                         ticks: {
                             beginAtZero: true,
                             max: 100
                         },
-                    },
-                ],
+                }],
             },
         },
     });
