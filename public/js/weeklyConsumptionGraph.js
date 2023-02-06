@@ -112,7 +112,7 @@ const updateWeeklyChart = async () => {
                 yAxes: [{
                         ticks: {
                             beginAtZero: true,
-                            max: 100
+                            max: 200
                         },
                 }],
             },
