@@ -15,7 +15,7 @@ router.get("/", withAuth, async (req, res) => {
     }
 });
 
-router.get("/weekly:midnight", withAuth, async (req, res) => {
+router.get("/weekly/:midnight", withAuth, async (req, res) => {
     try {
         /*
             Req Params:
@@ -36,7 +36,6 @@ router.get("/weekly:midnight", withAuth, async (req, res) => {
 router.get("/daily/:midnight", withAuth, async (req, res) => {
     try {
         /*
-
             Req Params:
             midnight: DATE (midnight this morning for client's timezone)
 
