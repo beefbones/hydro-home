@@ -1,6 +1,16 @@
 const router = require("express").Router();
 const { User } = require("../../models");
 const bcrypt = require("bcrypt");
+const withAuth = require("../../utils/auth");
+
+router.get("/", withAuth, async (req, res) => {
+    try {
+        const userData = await User.findByPk(req.session.user_id, { attributes: { exclude: "hashed_password" } });
+        res.json(userData);
+    } catch (error) {
+        res.status(400).json(err);
+    }
+});
 
 router.post("/signup", async (req, res) => {
     bcrypt.hash(req.body.password, 10, async (err, hashed_password) => {
@@ -68,18 +78,18 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
     if (req.session.logged_in) {
-        req.session.destroy(err => {
+        req.session.destroy((err) => {
             if (err) {
-                res.status(400).send('Unable to log out')
+                res.status(400).send("Unable to log out");
             } else {
-                res.send('Logout successful')
+                res.send("Logout successful");
             }
         });
     } else {
-        res.end()
+        res.end();
     }
-})
+});
 
 module.exports = router;

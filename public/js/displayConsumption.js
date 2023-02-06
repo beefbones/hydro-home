@@ -1,6 +1,7 @@
 const updateDisplay = async () => {
     const consumptionDisplay = document.querySelector("#consumption-today");
     const goalDisplay = document.querySelector("#todays-goal");
+    const userDisplay = document.querySelector("#user-display");
 
     const consumptionResponse = await fetch(`/api/waterConsumption/daily/${new Date().setHours(0, 0, 0, 0)}`, {
         method: "GET",
@@ -28,6 +29,12 @@ const updateDisplay = async () => {
     }
 
     goalDisplay.innerHTML = `${currentGoal} ounces`;
-};
 
+    const userResponse = await fetch(`/api/users/`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    });
+    const { username } = await userResponse.json();
+    userDisplay.innerHTML = `Welcome, ${username}`;
+};
 updateDisplay();
