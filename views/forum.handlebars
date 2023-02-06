@@ -18,11 +18,14 @@
 
             <div class="mt-8 flex justify-center text-lg text-black">
                 <button type="submit"
-                    class="rounded-3xl bg-blue-200 bg-opacity-50 px-10 py-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-blue-600">Submit</button>
+                    class="rounded-3xl bg-blue-200 bg-opacity-50 px-10 pt-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-blue-600">Submit</button>
             </div>
         </form>
     </div>
 </div>
 
-
+<div class="bg-cyan-800">
+{{#each forumPosts as |post|}}
 {{> post-details}}
+{{/each}}
+</div>
