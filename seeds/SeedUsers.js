@@ -6,7 +6,7 @@ const seedUsers = async () => {
         {
             id: 1,
             username: "Liam Smith",
-            hashed_password: "$2b$10$oKrcsjSzHd7VOUS9cSFJK.F8U66EMXWJQmgCVuSOD/G35t4aQ7rXy",
+            hashed_password: "npm ",
             //password1
             email: "Lsmith@gmail.com",
         },
