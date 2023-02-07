@@ -1,6 +1,21 @@
 # hydro-home
 
   [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+  
+   ## Table of Contents
+
+  *[Description](#description)
+
+  *[Installation](#installation)
+
+  *[Usage](#usage)
+
+  *[License](#license)
+
+  *[Tests](#tests)
+
+  *[Questions](#questions)
+
 
   ## Description
   Hydro home is a solution to monitor and track water consumption versus your daily goal. Users are able to see their water consumption data as well as create posts and comment on other users' posts.
@@ -12,23 +27,6 @@
 
 ![Hydro Home Screenshot](./public/images/screenshot.png)
 
-  ## Table of Contents
-
-  *[Description](#description)
-
-  *[Installation](#installation)
-
-  *[Usage](#usage)
-
-  *[License](#license)
-
-  *[Contributing](#contributing)
-
-  *[Tests](#tests)
-
-  *[Questions](#questions)
-
-  *[Credits](credits)
 
   ## Installation
   First, git clone the repository to your local system. Then, run CLI and run npm install to install all dependencies. Finally, run npm start.
