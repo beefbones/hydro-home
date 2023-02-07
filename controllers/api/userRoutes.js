@@ -61,7 +61,7 @@ router.post("/login", async (req, res) => {
         }
 
         if (!userData) {
-            res.status(400).json({ message: "Incorrect email, username, or password, please try again" });
+            throw new Error("Incorrect email, username, or password, please try again");
         }
 
         const validPass = await bcrypt.compare(req.body.password, userData.hashed_password);
@@ -71,7 +71,7 @@ router.post("/login", async (req, res) => {
             req.session.logged_in = true;
             res.status(200).send("signed in successfully!");
         } else {
-            res.status(400).json({ message: "Incorrect email, username, or password, please try again" });
+            throw new Error("Incorrect email, username, or password, please try again");
         }
     } catch (err) {
         res.status(400).json(err);
