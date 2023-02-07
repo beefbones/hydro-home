@@ -51,7 +51,7 @@ router.post("/login", async (req, res) => {
         }
 
         if (!userData) {
-            res.status(400).json({ message: "Incorrect email, username, or password, please try again" });
+            throw new Error("Incorrect email, username, or password, please try again");
         }
 
         const validPass = await bcrypt.compare(req.body.password, userData.hashed_password);
@@ -61,25 +61,25 @@ router.post("/login", async (req, res) => {
             req.session.logged_in = true;
             res.status(200).send("signed in successfully!");
         } else {
-            res.status(400).json({ message: "Incorrect email, username, or password, please try again" });
+            throw new Error("Incorrect email, username, or password, please try again");
         }
     } catch (err) {
         res.status(400).json(err);
     }
 });
 
-router.post('/logout', (req, res) => {
+router.post("/logout", (req, res) => {
     if (req.session.logged_in) {
-        req.session.destroy(err => {
+        req.session.destroy((err) => {
             if (err) {
-                res.status(400).send('Unable to log out')
+                res.status(400).send("Unable to log out");
             } else {
-                res.send('Logout successful')
+                res.send("Logout successful");
             }
         });
     } else {
-        res.end()
+        res.end();
     }
-})
+});
 
 module.exports = router;
